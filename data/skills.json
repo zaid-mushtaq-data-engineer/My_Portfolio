@@ -1,0 +1,102 @@
+{
+  "categories": [
+    {
+      "name": "Data Engineering",
+      "icon": "database",
+      "skills": [
+        {
+          "name": "PySpark",
+          "percentage": 80
+        },
+        {
+          "name": "Apache Airflow",
+          "percentage": 55
+        },
+        {
+          "name": "ETL Pipelines",
+          "percentage": 60
+        },
+        {
+          "name": "Apache Spark",
+          "percentage": 75
+        }
+      ]
+    },
+    {
+      "name": "Programming & Databases",
+      "icon": "code",
+      "skills": [
+        {
+          "name": "Python",
+          "percentage": 80
+        },
+        {
+          "name": "SQL",
+          "percentage": 85
+        },
+        {
+          "name": "MySQL / SQL Server",
+          "percentage": 85
+        },
+        {
+          "name": "MongoDB",
+          "percentage": 40
+        },
+        {
+          "name": "C++",
+          "percentage": 50
+        }
+      ]
+    },
+    {
+      "name": "Libraries & Analysis",
+      "icon": "bar-chart",
+      "skills": [
+        {
+          "name": "Pandas",
+          "percentage": 85
+        },
+        {
+          "name": "NumPy",
+          "percentage": 80
+        },
+        {
+          "name": "Matplotlib",
+          "percentage": 50
+        }
+      ]
+    },
+    {
+      "name": "Tools & Environment",
+      "icon": "settings",
+      "skills": [
+        {
+          "name": "Git",
+          "percentage": 65
+        },
+        {
+          "name": "Linux",
+          "percentage": 60
+        },
+        {
+          "name": "Docker",
+          "percentage": 40
+        }
+      ]
+    },
+    {
+      "name": "Problem Solving",
+      "icon": "cpu",
+      "skills": [
+        {
+          "name": "Data Structures & Algorithms",
+          "percentage": 60
+        },
+        {
+          "name": "Problem Solving",
+          "percentage": 65
+        }
+      ]
+    }
+  ]
+}

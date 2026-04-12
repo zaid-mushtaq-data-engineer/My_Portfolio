@@ -1,0 +1,71 @@
+{
+  "name": "Zaid Mushtaq",
+  "title": "Aspiring Data Engineer | Python, SQL, PySpark & Airflow",
+  "tagline": "Building data pipelines and learning scalable data engineering systems",
+
+  "description": "I am an aspiring Data Engineer focused on building data pipelines and working with modern data tools. Currently learning PySpark, Airflow, and data processing systems while practicing real-world ETL workflows. My goal is to become a skilled data engineer capable of building scalable and efficient data solutions.",
+
+  "profileImage": "Images/profile.jpeg",
+
+
+  "location": "Srinagar, Jammu & Kashmir (Currently in Bangalore, India)",
+  "email": "mushtaqzaid589@gmail.com",
+  "phone": "+91 6006623071",
+
+  "social": {
+    "github": "https://github.com/zaid-mushtaq-data-engineer",
+    "linkedin": "https://www.linkedin.com/in/zaid-mushtaq-data-engineer"
+  },
+
+  "about": {
+    "summary": "My journey into data engineering started with learning Python and SQL, which gradually led me into working with big data tools like Apache Spark and workflow orchestration using Airflow. Over time, I have been building a strong foundation in data processing and pipeline development while continuously improving my practical skills.",
+
+    "paragraphs": [
+      "I am currently focusing on learning and practicing core data engineering tools such as PySpark, SQL, and Apache Airflow. I also have beginner-level exposure to Docker and understand the fundamentals of building and managing data pipelines.",
+      "Right now, I am actively working on ETL-based practice projects to strengthen my understanding of real-world data workflows, including data ingestion, transformation, and loading processes.",
+      "I believe in consistent learning and hands-on practice. My approach is to deeply understand concepts and apply them practically, so I can build scalable and production-ready data solutions in the future."
+    ],
+
+    "highlights": [
+      {
+        "number": "1+",
+        "label": "Years Learning"
+      },
+      {
+        "number": "0+",
+        "label": "Projects Completed"
+      },
+
+      {
+        "number": "2-3 hrs",
+        "label": "Daily Learning"
+      }
+    ]
+  },
+
+  "contact": {
+    "title": "Let’s Build Something Together",
+    "description": "I’m currently focused on learning and growing in data engineering. If you have opportunities, collaboration ideas, or just want to connect, feel free to reach out. I’d be happy to connect and learn from you.",
+
+    "info": [
+      {
+        "type": "email",
+        "label": "Email",
+        "value": "mushtaqzaid589@gmail.com",
+        "icon": "mail"
+      },
+      {
+        "type": "phone",
+        "label": "Phone",
+        "value": "+91 6006623071",
+        "icon": "phone"
+      },
+      {
+        "type": "location",
+        "label": "Location",
+        "value": "Bangalore, India",
+        "icon": "map-pin"
+      }
+    ]
+  }
+}
