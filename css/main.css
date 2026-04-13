@@ -65,6 +65,66 @@
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
 }
 
+/*================================
+Sort option
+=================================*/
+/* Top filter row (search + sort) */
+.filter-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Search box wider */
+.search-box {
+    flex: 1;
+    max-width: 500px;
+}
+
+/* Sort box */
+.sort-box {
+    min-width: 180px;
+}
+
+/* Bigger dropdown */
+.sort-select {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    font-size: 0.95rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+
+.sort-select:hover {
+    border-color: var(--accent-primary);
+}
+
+.sort-select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+@media (max-width: 768px) {
+    .filter-top {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        max-width: 100%;
+    }
+
+    .sort-box {
+        width: 100%;
+    }
+}
 /* ============================================
    Reset & Base Styles
    ============================================ */

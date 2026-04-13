@@ -1,15 +1,10 @@
-/**
- * Blogs Module
- * Handles blogs section with search, category filtering,
- * and optimized chunk loading (pagination)
- */
-
 const Blogs = {
     async init() {
         this.container = document.getElementById('blogs-grid');
         this.searchInput = document.getElementById('blog-search');
         this.categoriesContainer = document.getElementById('blog-categories');
         this.loadMoreBtn = document.getElementById('load-more');
+        this.sortSelect = document.getElementById('sort-blogs');
 
         if (!this.container) return;
 
@@ -19,6 +14,7 @@ const Blogs = {
         this.allCategories = [];
         this.activeCategory = 'All';
         this.searchQuery = '';
+        this.sortOrder = 'latest';
 
         // Pagination
         this.itemsPerLoad = 10;
@@ -26,12 +22,17 @@ const Blogs = {
 
         try {
             const data = await DataLoader.loadBlogs();
-            this.allBlogs = data.blogs || [];
+
+            // ✅ Sort initially (latest first)
+            this.allBlogs = (data.blogs || []).sort((a, b) =>
+                new Date(b.date) - new Date(a.date)
+            );
+
             this.filteredBlogs = [...this.allBlogs];
             this.allCategories = await DataLoader.getBlogCategories();
 
             this.renderCategories();
-            this.renderBlogs(); // initial chunk
+            this.renderBlogs();
             this.bindEvents();
         } catch (error) {
             console.error('Error loading blogs:', error);
@@ -42,10 +43,13 @@ const Blogs = {
     bindEvents() {
         // 🔍 Search
         if (this.searchInput) {
-            this.searchInput.addEventListener('input', Utils.debounce((e) => {
-                this.searchQuery = e.target.value.toLowerCase().trim();
-                this.filterBlogs();
-            }, 300));
+            this.searchInput.addEventListener(
+                'input',
+                Utils.debounce((e) => {
+                    this.searchQuery = e.target.value.toLowerCase().trim();
+                    this.filterBlogs();
+                }, 300)
+            );
         }
 
         // 🏷️ Category filter
@@ -59,7 +63,16 @@ const Blogs = {
             });
         }
 
-        // ➕ Load More button
+        // 🔽 Sort dropdown
+        if (this.sortSelect) {
+            this.sortSelect.addEventListener('change', (e) => {
+                this.sortOrder = e.target.value;
+                this.sortBlogs();
+                this.renderBlogs();
+            });
+        }
+
+        // ➕ Load More
         if (this.loadMoreBtn) {
             this.loadMoreBtn.addEventListener('click', () => {
                 this.loadMoreBlogs();
@@ -74,16 +87,22 @@ const Blogs = {
     },
 
     updateActiveCategory() {
-        const categories = this.categoriesContainer.querySelectorAll('.filter-category');
-        categories.forEach(cat => {
-            cat.classList.toggle('active', cat.dataset.value === this.activeCategory);
+        const categories =
+            this.categoriesContainer.querySelectorAll('.filter-category');
+
+        categories.forEach((cat) => {
+            cat.classList.toggle(
+                'active',
+                cat.dataset.value === this.activeCategory
+            );
         });
     },
 
     filterBlogs() {
-        this.filteredBlogs = this.allBlogs.filter(blog => {
+        this.filteredBlogs = this.allBlogs.filter((blog) => {
             const matchesCategory =
-                this.activeCategory === 'All' || blog.category === this.activeCategory;
+                this.activeCategory === 'All' ||
+                blog.category === this.activeCategory;
 
             const matchesSearch =
                 !this.searchQuery ||
@@ -94,21 +113,34 @@ const Blogs = {
             return matchesCategory && matchesSearch;
         });
 
-        // 🔥 Reset & re-render
+        // ✅ Apply sorting after filtering
+        this.sortBlogs();
+
+        // Reset
         this.currentIndex = 0;
         this.container.innerHTML = '';
+
         this.loadMoreBlogs();
+    },
+
+    sortBlogs() {
+        this.filteredBlogs.sort((a, b) => {
+            if (this.sortOrder === 'latest') {
+                return new Date(b.date) - new Date(a.date);
+            } else {
+                return new Date(a.date) - new Date(b.date);
+            }
+        });
     },
 
     renderBlogs() {
         if (this.filteredBlogs.length === 0) {
             this.container.innerHTML =
-                Renderer.noResults('No articles found matching your criteria');
+                Renderer.noResults('No articles found');
             if (this.loadMoreBtn) this.loadMoreBtn.style.display = 'none';
             return;
         }
 
-        // Reset
         this.container.innerHTML = '';
         this.currentIndex = 0;
 
@@ -122,36 +154,35 @@ const Blogs = {
         );
 
         const html = nextItems
-            .map(blog => Renderer.blogCard(blog))
+            .map((blog) => Renderer.blogCard(blog))
             .join('');
 
         this.container.insertAdjacentHTML('beforeend', html);
 
         this.currentIndex += this.itemsPerLoad;
 
-        // Hide button if no more items
+        // Show/hide button
         if (this.loadMoreBtn) {
-            if (this.currentIndex >= this.filteredBlogs.length) {
-                this.loadMoreBtn.style.display = 'none';
-            } else {
-                this.loadMoreBtn.style.display = 'block';
-            }
+            this.loadMoreBtn.style.display =
+                this.currentIndex >= this.filteredBlogs.length
+                    ? 'none'
+                    : 'block';
         }
 
-        // Lazy load images
+        // Lazy load
         Utils.lazyLoadImages('.blog-image[data-src]');
 
-        // Reveal animation
+        // Animation
         Utils.observeElements('.blog-card', 'active', {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -50px 0px',
         });
     },
 
     renderError() {
         this.container.innerHTML =
             Renderer.errorMessage('Failed to load blog posts');
-    }
+    },
 };
 
 // Init

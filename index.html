@@ -11,10 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
-    if (localStorage.getItem('theme') === 'dark') {
-        document.documentElement.classList.add('dark');
-    }
-</script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
 </head>
 
 <body>
@@ -142,17 +142,25 @@
             </div>
 
             <div class="blogs-filter">
-                <div class="search-box">
-                    <input type="text" id="blog-search" placeholder="Search articles..." class="search-input">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
+
+                <div class="filter-top">
+                    <div class="search-box">
+                        <input type="text" id="blog-search" placeholder="Search articles..." class="search-input">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </div>
+
+                    <div class="sort-box">
+                        <select id="sort-blogs" class="sort-select">
+                            <option value="latest">Latest</option>
+                            <option value="oldest">Oldest</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="filter-categories" id="blog-categories">
-                    <!-- Category filters -->
-                </div>
+                <div class="filter-categories" id="blog-categories"></div>
             </div>
 
             <div class="blogs-grid" id="blogs-grid">
